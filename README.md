@@ -25,9 +25,9 @@ Repository for storing results from genome analysis - Sample Eb314ss1
 ## 3. Generate an Optimized MyGenome Assembly using Velvet and SPAdes
 Based on k-mer optimization and algorithm comparison, the following assembly metrics were produced:
 
-| Metric | Velvet (k=10) | Velvet (k=2) | SPAdes (Standard) | SPAdes (Paired Only) |
+| Metric | Velvet (k=10) | Velvet (k=2) | SPAdes (Paired+Unpaired) | SPAdes (Paired Only) |
 | :--- | :--- | :--- | :--- | :--- |
-| **Recommended k-mer** | 83 | - | - | - |
+| **Recommended k-mer** | 83 | 93 | Default | Default |
 | **Genome Size** | 40,297,917 | 40,380,887 | 40,388,759 | 40,341,516 |
 | **# Contigs** | 3,370 | 3,880 | 4,597 | 4,168 |
 | **N50 Value** | 116,385 | 124,822 | 202,513 | 233,912 |
