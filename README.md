@@ -24,6 +24,7 @@ Repository for storing results from genome analysis - Sample Eb314ss1
 
 ## 3. Generate an Optimized MyGenome Assembly using Velvet and SPAdes
 Based on k-mer optimization and algorithm comparison, the following assembly metrics were produced:
+All N50 calculated using **[calculate_n50.sh](./calculate_n50.sh)**
 
 | Metric | Velvet (k=10) | Velvet (k=2) | SPAdes (Paired+Unpaired) | SPAdes (Paired Only) |
 | :--- | :--- | :--- | :--- | :--- |
@@ -36,7 +37,7 @@ Based on k-mer optimization and algorithm comparison, the following assembly met
 * **Assembly Accession #:** SUB15999145 (Temporary)
 * **Final Cleaned Genome Size:** 40,137,340
 * **Final Contig Count:** 2,492
-* **Final N50:** 232,638
+* **Final N50:** 232,638 
 
 ## 5. Assess Genome Quality using BUSCO
 * **Fold Coverage:** [Insert Value]
