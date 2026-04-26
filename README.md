@@ -87,7 +87,7 @@ All N50 values calculated using **[calculate_n50.sh](./calculate_n50.sh)**
 
 The best assembly (SPAdes Paired Only) was filtered to remove short contigs, producing a final cleaned genome submitted to NCBI.
 
-*Commands: [Genome%20Assembly%20%26%20Cleanup_commands.md § 4.3](./Genome%20Assembly%20%26%20Cleanup/Genome%20Assembly%20%26%20Cleanup_commands.md)*
+*Commands: [Genome Assembly & Cleanup_commands.md § 4.3](./Genome%20Assembly%20%26%20Cleanup/Genome%20Assembly%20%26%20Cleanup_commands.md), [Genome Post Processing for NCBI submission_commands.md](./Genome%20Post%20Processing%20for%20NCBI%20submission/Genome%20Post%20Processing%20for%20NCBI%20submission_commands.md)*
 
 * **Assembly Accession #:** SUB15999145 (Temporary)
 * **Final Cleaned Genome Size:** 40,137,340
@@ -131,7 +131,14 @@ Genes were predicted using two ab initio predictors (SNAP and AUGUSTUS) trained 
 
 A custom HMM was trained from the annotated *M. oryzae* B71 reference strain using the `fathom` / `forge` / `hmm-assembler.pl` pipeline, then applied to the Eb314ss1 assembly.
 
-**Key commands:**
+**Headline command (gene count):**
+
+```bash
+fathom Eb314ss1-snap.zff Eb314ss1_final.fasta -gene-stats
+```
+
+<details>
+<summary>Full SNAP training + prediction pipeline</summary>
 
 ```bash
 # Prepare training data
@@ -147,6 +154,8 @@ snap-hmm Moryzae.hmm Eb314ss1_final.fasta > Eb314ss1-snap.zff
 fathom Eb314ss1-snap.zff Eb314ss1_final.fasta -gene-stats
 snap-hmm Moryzae.hmm Eb314ss1_final.fasta -gff > Eb314ss1-snap.gff2
 ```
+
+</details>
 
 **SNAP Gene Prediction Summary:**
 
@@ -187,7 +196,14 @@ augustus --species=magnaporthe_grisea --gff3=on \
 
 MAKER integrated SNAP predictions, AUGUSTUS predictions, and NCBI *Magnaporthe* protein evidence to produce a unified, evidence-supported annotation.
 
-**Key commands:**
+**Headline command (gene count):**
+
+```bash
+awk '$3 == "gene"' igvFiles/Eb314ss1-maker.gff3 | wc -l
+```
+
+<details>
+<summary>Full MAKER setup + merge + count pipeline</summary>
 
 ```bash
 # Generate config files
@@ -215,17 +231,6 @@ singularity exec /share/singularity/images/ccs/MAKER/amd-maker-debian10.sinf \
     -o Eb314ss1
 grep -c "^>" Eb314ss1.all.maker.proteins.fasta
 ```
-
-<details>
-<summary>Key <code>maker_opts.ctl</code> settings</summary>
-
-| Option | Value |
-| :--- | :--- |
-| `genome` | `Eb314ss1_final.fasta` |
-| `snaphmm` | `Moryzae.hmm` |
-| `augustus_species` | `magnaporthe_grisea` |
-| `keep_preds` | `1` |
-| `protein` | `ncbi-protein-Magnaporthe_organism.fasta` |
 
 </details>
 
@@ -309,11 +314,10 @@ Contigs covered ≥90% by hits to `MoMitochondrion.fasta` were exported as the N
 
 The B71 reference was used as both query (to find B71 regions absent from Eb314ss1) and subject (to find Eb314ss1 contigs absent from B71).
 
-**Reverse query (Eb314ss1 → B71) to count contigs lacking B71 matches:**
+**Headline command (contig count):**
 
 ```bash
 grep -c "0 hits found" blast/B71.Eb314ss1reverse.BLAST
-grep -B 2 "0 hits found" blast/B71.Eb314ss1reverse.BLAST | grep "Query"
 ```
 
 | Metric | Value |
@@ -328,6 +332,11 @@ grep -B 2 "0 hits found" blast/B71.Eb314ss1reverse.BLAST | grep "Query"
 
 ### 7.3 Convert BLAST Output to GFF3 for IGV
 
+The B71-as-query BLAST output was converted to a GFF3 feature track so that alignments can be plotted on the B71 chromosomes in IGV. Strand is inferred from whether the subject start coordinate is less than the subject end.
+
+<details>
+<summary>Conversion pipeline</summary>
+
 ```bash
 echo "##gff-version 3" > blast/B71_alignments.gff3
 grep -v "^#" blast/B71.Eb314ss1.BLAST | \
@@ -335,6 +344,8 @@ grep -v "^#" blast/B71.Eb314ss1.BLAST | \
     >> blast/B71_alignments.gff3
 head -n 10 blast/B71_alignments.gff3
 ```
+
+</details>
 
 <details>
 <summary>First 10 lines of <code>B71_alignments.gff3</code></summary>

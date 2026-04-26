@@ -23,6 +23,15 @@ fathom Eb314ss1-snap.zff Eb314ss1_final.fasta -gene-stats
 snap-hmm Moryzae.hmm Eb314ss1_final.fasta -gff > Eb314ss1-snap.gff2
 ```
 
+<details>
+<summary><code>fathom -gene-stats</code> output (predicted gene count)</summary>
+
+```
+<!-- INSERT fathom -gene-stats output here -->
+```
+
+</details>
+
 ---
 
 ## AUGUSTUS
@@ -34,6 +43,15 @@ augustus --species=magnaporthe_grisea --gff3=on \
     --singlestrand=true --progress=true \
     ../snap/Eb314ss1_final.fasta > Eb314ss1-augustus.gff3
 ```
+
+<details>
+<summary>Predicted gene count from <code>Eb314ss1-augustus.gff3</code></summary>
+
+```
+<!-- INSERT count from: awk '$3 == "gene"' Eb314ss1-augustus.gff3 | wc -l -->
+```
+
+</details>
 
 ---
 
@@ -48,10 +66,23 @@ singularity exec /share/singularity/images/ccs/MAKER/amd-maker-debian10.sinf mak
 # Submit job
 sbatch maker.sh /project/farman_s26abt480/lefi229/Eb314ss1/Eb314ss1_final.fasta
 
-# Merge results
+# Monitor progress
+cat Eb314ss1_final_maker.log
+
+# Merge results into a single GFF3
 gff3_merge \
     -d Eb314ss1_final.maker.output/Eb314ss1_final_master_datastore_index.log \
     -o Eb314ss1-maker.gff3
+
+# Count predicted genes in the MAKER GFF3
+awk '$3 == "gene"' igvFiles/Eb314ss1-maker.gff3 | wc -l
+
+# Generate proteins.fasta and verify count matches the gene count above
+singularity exec /share/singularity/images/ccs/MAKER/amd-maker-debian10.sinf \
+    fasta_merge \
+    -d Eb314ss1_final.maker.output/Eb314ss1_final_master_datastore_index.log \
+    -o Eb314ss1
+grep -c "^>" Eb314ss1.all.maker.proteins.fasta
 ```
 
 **`maker_opts.ctl` key settings:**
@@ -63,3 +94,34 @@ augustus_species=magnaporthe_grisea
 keep_preds=1
 protein=ncbi-protein-Magnaporthe_organism.fasta
 ```
+
+<details>
+<summary>Key <code>maker_opts.ctl</code> settings (table)</summary>
+
+| Option | Value |
+| :--- | :--- |
+| `genome` | `Eb314ss1_final.fasta` |
+| `snaphmm` | `Moryzae.hmm` |
+| `augustus_species` | `magnaporthe_grisea` |
+| `keep_preds` | `1` |
+| `protein` | `ncbi-protein-Magnaporthe_organism.fasta` |
+
+</details>
+
+<details>
+<summary>Predicted gene count (<code>awk '$3 == "gene"' ... | wc -l</code>)</summary>
+
+```
+<!-- INSERT MAKER gene count here -->
+```
+
+</details>
+
+<details>
+<summary>Predicted protein count (<code>grep -c "^>" Eb314ss1.all.maker.proteins.fasta</code>)</summary>
+
+```
+<!-- INSERT MAKER protein count here (should match gene count above) -->
+```
+
+</details>

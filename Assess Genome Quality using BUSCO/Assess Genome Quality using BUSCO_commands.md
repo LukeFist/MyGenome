@@ -31,6 +31,15 @@ ls -lrt
 tail -f slurm-XXXXXXX.out
 ```
 
+<details>
+<summary>Sample <code>slurm-XXXXXXX.out</code> tail</summary>
+
+```
+<!-- INSERT slurm output tail here -->
+```
+
+</details>
+
 ---
 
 ## 3. View Results
@@ -40,5 +49,14 @@ The completeness summary is in the `short_summary` file inside the BUSCO output 
 ```bash
 cat Eb314ss1_final_busco/short_summary*.txt
 ```
+
+<details>
+<summary><code>short_summary*.txt</code> excerpt</summary>
+
+```
+<!-- INSERT contents of short_summary*.txt here -->
+```
+
+</details>
 
 - short_summary file: <!-- INSERT path to short_summary file once uploaded -->

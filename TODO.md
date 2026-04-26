@@ -15,11 +15,16 @@ Every `<!-- INSERT ... -->` placeholder in `README.md` and the `*_commands.md` f
 
 ## Numeric Results / Tables
 
-- [ ] **§5 BUSCO**: paste `short_summary*.txt` excerpt into the `<details>` block in README §5
-- [ ] **§6.1 SNAP**: number of predicted genes from `fathom -gene-stats` output → fill table in README §6.1
-- [ ] **§6.2 AUGUSTUS**: number of predicted genes from GFF3 output → fill table in README §6.2
-- [ ] **§6.3 MAKER**: gene count from `awk '$3 == "gene"' igvFiles/Eb314ss1-maker.gff3 | wc -l` → fill table in README §6.3
-- [ ] **§6.3 MAKER**: protein count from `grep -c "^>" Eb314ss1.all.maker.proteins.fasta` (must match gene count) → fill table in README §6.3
+- [ ] **§5 BUSCO**: paste `short_summary*.txt` excerpt into the `<details>` block in README §5 **and** into BUSCO commands § 3
+- [ ] **§5 BUSCO**: paste sample `slurm-XXXXXXX.out` tail into the `<details>` block in BUSCO commands § 2
+- [ ] **§6.1 SNAP**: number of predicted genes from `fathom -gene-stats` output → fill table in README §6.1 **and** paste output into Gene Prediction commands SNAP `<details>`
+- [ ] **§6.2 AUGUSTUS**: number of predicted genes from GFF3 output → fill table in README §6.2 **and** paste count into Gene Prediction commands AUGUSTUS `<details>`
+- [ ] **§6.3 MAKER**: gene count from `awk '$3 == "gene"' igvFiles/Eb314ss1-maker.gff3 | wc -l` → fill table in README §6.3 **and** paste into Gene Prediction commands MAKER gene-count `<details>`
+- [ ] **§6.3 MAKER**: protein count from `grep -c "^>" Eb314ss1.all.maker.proteins.fasta` (must match gene count) → fill table in README §6.3 **and** paste into Gene Prediction commands MAKER protein-count `<details>`
+- [ ] **§4 NCBI Post-Processing**: paste slurm output / `seqkit stats Eb314ss1_final.fasta` into the `<details>` block in Post-Processing commands § 1
+- [ ] **§4 / §7.1 Mito BLAST**: paste `head -n 10 MoMitochondrion.Eb314ss1.BLAST` excerpt into Post-Processing commands § 2 `<details>`
+- [ ] **§4 / §7.1 Mito CSV head**: paste `cat Eb314ss1_mitochondrion.csv` contents into Post-Processing commands § 2 `<details>`
+- [ ] **§4 / §7.1 Short mito hits head**: paste `head -n 10 Eb314ss1_short_mitochondrial_hits.txt` excerpt into Post-Processing commands § 2 `<details>`
 
 ## Code Snippets / Commands
 

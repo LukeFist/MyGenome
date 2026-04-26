@@ -17,6 +17,15 @@ sbatch GenomePostProcess.sh path/to/Eb314ss1_newheader.fasta
 
 Output will be `Eb314ss1_final.fasta`.
 
+<details>
+<summary>Slurm output / final assembly stats</summary>
+
+```
+<!-- INSERT slurm-XXXXXXX.out tail (or seqkit stats Eb314ss1_final.fasta) here -->
+```
+
+</details>
+
 ---
 
 ## 2. Identify Mitochondrial Sequences
@@ -34,17 +43,44 @@ singularity run --app blast2120 /share/singularity/images/ccs/conda/amd-conda1-c
     -out MoMitochondrion.Eb314ss1.BLAST
 ```
 
+<details>
+<summary>First lines of <code>MoMitochondrion.Eb314ss1.BLAST</code></summary>
+
+```
+<!-- INSERT head -n 10 MoMitochondrion.Eb314ss1.BLAST output here -->
+```
+
+</details>
+
 Export contigs where the BLAST hit covers ≥90% of the contig length. This CSV is uploaded to NCBI.
 
 ```bash
 awk '$4/$3 >= 0.9 {print $2 ",mitochondrion"}' MoMitochondrion.Eb314ss1.BLAST > Eb314ss1_mitochondrion.csv
 ```
 
+<details>
+<summary>Contents of <code>Eb314ss1_mitochondrion.csv</code></summary>
+
+```
+<!-- INSERT cat Eb314ss1_mitochondrion.csv output here -->
+```
+
+</details>
+
 Export hits that did NOT pass the filter for manual review. Check for split alignments that together cover ≥90% of the contig and add those to the CSV.
 
 ```bash
 awk '$4/$3 < 0.9' MoMitochondrion.Eb314ss1.BLAST > Eb314ss1_short_mitochondrial_hits.txt
 ```
+
+<details>
+<summary>Contents of <code>Eb314ss1_short_mitochondrial_hits.txt</code></summary>
+
+```
+<!-- INSERT head -n 10 Eb314ss1_short_mitochondrial_hits.txt output here -->
+```
+
+</details>
 
 - Mitochondrial CSV (NCBI submission): <!-- INSERT path to Eb314ss1_mitochondrion.csv once uploaded -->
 - Short hits (manual review): <!-- INSERT path to Eb314ss1_short_mitochondrial_hits.txt once uploaded -->

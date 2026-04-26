@@ -48,6 +48,22 @@ grep -c "0 hits found" B71.Eb314ss1reverse.BLAST
 grep -B 2 "0 hits found" B71.Eb314ss1reverse.BLAST | grep "Query"
 ```
 
+<details>
+<summary>Contig count lacking B71 matches (<code>grep -c "0 hits found"</code>)</summary>
+
+```
+1111
+```
+
+</details>
+
+<details>
+<summary>List of Eb314ss1 contigs lacking B71 matches</summary>
+
+Full list: <!-- INSERT path to contig list file once uploaded -->
+
+</details>
+
 ---
 
 ## 4. Convert BLAST Output to GFF3 for IGV
@@ -60,6 +76,26 @@ grep -v "^#" B71.Eb314ss1.BLAST | \
 
 head -n 10 B71_alignments.gff3
 ```
+
+<details>
+<summary>First 10 lines of <code>B71_alignments.gff3</code></summary>
+
+```
+##gff-version 3
+Chr1    .    blast    3252578    3436802    .    -    .    ID=Eb314ss1_contig50
+Chr1    .    blast    3436827    3471467    .    -    .    ID=Eb314ss1_contig50
+Chr1    .    blast    3471453    3485179    .    -    .    ID=Eb314ss1_contig50
+Chr1    .    blast    746643     862341     .    -    .    ID=Eb314ss1_contig11
+Chr1    .    blast    1007190    1080656    .    -    .    ID=Eb314ss1_contig11
+Chr1    .    blast    1098067    1144259    .    -    .    ID=Eb314ss1_contig11
+Chr1    .    blast    951763     985039     .    -    .    ID=Eb314ss1_contig11
+Chr1    .    blast    864431     891547     .    -    .    ID=Eb314ss1_contig11
+Chr1    .    blast    1408887    1433782    .    -    .    ID=Eb314ss1_contig11
+```
+
+Full GFF3: <!-- INSERT path to B71_alignments.gff3 once uploaded -->
+
+</details>
 
 ---
 
