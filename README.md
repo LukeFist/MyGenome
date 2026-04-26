@@ -161,7 +161,7 @@ snap-hmm Moryzae.hmm Eb314ss1_final.fasta -gff > Eb314ss1-snap.gff2
 
 | Metric | Value |
 | :--- | :--- |
-| **Number of Predicted Genes** | <!-- INSERT NUMBER FROM fathom -gene-stats --> |
+| **Number of Predicted Genes** | 12,485 |
 
 ---
 
@@ -188,7 +188,7 @@ augustus --species=magnaporthe_grisea --gff3=on \
 
 | Metric | Value |
 | :--- | :--- |
-| **Number of Predicted Genes** | <!-- INSERT NUMBER FROM GFF3 output --> |
+| **Number of Predicted Genes** | 17,447 |
 
 ---
 
@@ -238,7 +238,7 @@ grep -c "^>" Eb314ss1.all.maker.proteins.fasta
 
 | Metric | Value |
 | :--- | :--- |
-| **Number of Predicted Genes** (from `awk '$3 == "gene"'` count) | <!-- INSERT NUMBER FROM maker GFF3 --> |
+| **Number of Predicted Genes** (from `awk '$3 == "gene"'` count) | 12,882 |
 | **Number of Predicted Proteins** (from `fasta_merge` count, should match) | <!-- INSERT NUMBER FROM proteins.fasta --> |
 
 ---
