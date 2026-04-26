@@ -24,10 +24,10 @@ snap-hmm Moryzae.hmm Eb314ss1_final.fasta -gff > Eb314ss1-snap.gff2
 ```
 
 <details>
-<summary><code>fathom -gene-stats</code> output (predicted gene count)</summary>
+<summary>Predicted gene count (<code>awk '{print $9}' Eb314ss1-snap.gff3 | uniq | wc -l</code>)</summary>
 
 ```
-<!-- INSERT fathom -gene-stats output here -->
+12485
 ```
 
 </details>
@@ -45,10 +45,10 @@ augustus --species=magnaporthe_grisea --gff3=on \
 ```
 
 <details>
-<summary>Predicted gene count from <code>Eb314ss1-augustus.gff3</code></summary>
+<summary>Predicted gene count (<code>grep -c 'start gene' Eb314ss1-augustus.gff3</code>)</summary>
 
 ```
-<!-- INSERT count from: awk '$3 == "gene"' Eb314ss1-augustus.gff3 | wc -l -->
+17447
 ```
 
 </details>
@@ -112,7 +112,7 @@ protein=ncbi-protein-Magnaporthe_organism.fasta
 <summary>Predicted gene count (<code>awk '$3 == "gene"' ... | wc -l</code>)</summary>
 
 ```
-<!-- INSERT MAKER gene count here -->
+12882
 ```
 
 </details>
